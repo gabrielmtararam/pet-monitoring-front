@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, computed } from 'vue'
 import { chatService } from '@/services/chat'
+import { useAnimalsStore } from '@/stores/animals'
 
 interface Message {
   text: string
@@ -10,6 +11,9 @@ interface Message {
 const props = defineProps<{
   animalId?: number
 }>()
+
+const animalsStore = useAnimalsStore()
+const activeAnimalId = computed(() => props.animalId || animalsStore.selectedAnimalId)
 
 const messages = ref<Message[]>([
   { text: 'Olá! Sou seu assistente de monitoramento pet. Como posso ajudar?', isUser: false },
@@ -38,7 +42,7 @@ const sendMessage = async () => {
   await scrollToBottom()
 
   try {
-    const { response } = await chatService.sendMessage(userText, props.animalId)
+    const { response } = await chatService.sendMessage(userText, activeAnimalId.value || undefined)
 
     messages.value.push({ text: response, isUser: false })
   }
