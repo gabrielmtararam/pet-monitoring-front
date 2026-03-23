@@ -79,6 +79,8 @@ const { selectedAnimal } = storeToRefs(animalsStore)
       <Footer />
     </template>
   </VerticalNavLayout>
+
+  <ChatBot :animal-id="selectedAnimal?.id" />
 </template>
 
 <style lang="scss" scoped>

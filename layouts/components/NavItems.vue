@@ -46,6 +46,14 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
   <VerticalNavLink
     :item="{
+      title: 'Chatbot',
+      icon: 'bx-chat',
+      to: '/chatbot',
+    }"
+  />
+
+  <VerticalNavLink
+    :item="{
       title: 'Cadastrar pote',
       icon: 'bx-plus-circle',
       to: '/bowls-create',
