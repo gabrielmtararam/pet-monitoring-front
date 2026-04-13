@@ -48,3 +48,5 @@ public/mockServiceWorker.js
 # Env files
 .env*
 !.env.example
+AGENTS.md
+
